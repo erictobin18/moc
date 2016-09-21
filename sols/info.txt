@@ -1,0 +1,5 @@
+Number of nodes: 121
+Number of init_line nodes: 11
+Stagnation pressure: 5000000
+Stagnation temperature: 4000
+Inlet radius: 10

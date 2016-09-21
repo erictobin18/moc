@@ -1,0 +1,26 @@
+trait HasLocation { // object exists at a single point (in the 2D axisymmetric plane), (r,z) : (f64,f64)
+    fn location(&self) -> Point;
+}
+
+trait HasPath { // object exists as a path, a 2D countour (in the 2D axisymmetric plane), defined by a set of points it passes through
+    fn point_list(&self) -> Vec<Point>;
+    fn r_at(&self, z: f64) -> f64; // interpolate the points to get the corresponding r value to the given z
+    fn dr_dz_at(&self, z: f64) -> f64; // get the corresponding derivative (in z) of r at the given z
+    fn intersect<T: HasPath>(&self, guess: Point) -> Point; // find the intersection of two paths from an initial guess
+}
+
+#[derive(Copy,Clone)]
+struct Point {
+    r: f64, // distance from axis of symmetry
+    z: f64, // distance from the most upstream point in the problem domain; +z is in flow direction
+}
+
+impl HasLocation for Point {
+    fn location(&self) -> Point {
+        *self
+    }
+}
+
+struct Path {
+    // A path is a cubic spline interpolation between points
+}
